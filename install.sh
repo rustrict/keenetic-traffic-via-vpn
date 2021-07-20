@@ -59,6 +59,7 @@ INSTALL_DIR="/opt/etc/unblock"
 REPO_URL="https://raw.githubusercontent.com/rustrict/keenetic-traffic-via-vpn/main"
 
 check_command opkg || failure "Для установки пакетов требуется opkg."
+opkg update >/dev/null 2>&1 || failure "Не удалось обновить список пакетов Entware."
 
 for pkg in bind-dig cron grep; do
   [ -n "$(opkg status ${pkg})" ] && continue
